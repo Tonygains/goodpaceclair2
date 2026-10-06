@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GOOD PACE — Athlete Management</title>
+<meta name="description" content="GOOD PACE accompagne les athlètes au-delà de leur performance : community management, brand partnerships et une communauté, les Good Pacers.">
+<meta name="theme-color" content="#FAF6EF">
+<meta property="og:title" content="GOOD PACE — Athlete Management">
+<meta property="og:description" content="Ton rythme. Ton histoire. Ta communauté.">
+<meta property="og:image" content="assets/logo-ink.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* terre, sable, écru */
+  --paper:#FAF6EF;
+  --sand:#EFE5D5;
+  --sand-deep:#E2D4BE;
+  --terre:#3E2E22;
+  --terre-deep:#2B2019;
+  --clay:#C25B34;
+  --clay-hot:#D9683C;
+  --dot:#E9552B;          /* l'orange du point du logo */
+  --ink:#241C16;
+  --ink-62:rgba(36,28,22,.62);
+  --ink-40:rgba(36,28,22,.40);
+  --ink-14:rgba(36,28,22,.14);
+  --cream-70:rgba(250,246,239,.70);
+  --cream-18:rgba(250,246,239,.18);
+
+  --gut:clamp(20px,5vw,84px);
+  --sect:clamp(72px,11vh,150px);
+  --maxw:1640px;
+  --serif:"Instrument Serif", Georgia, "Times New Roman", serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-variation-settings:"wdth" 100,"wght" 380;
+  font-size:clamp(16px,1.02vw,17.5px); line-height:1.65;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block}
+figure{margin:0}
+a{color:inherit}
+::selection{background:var(--clay); color:var(--paper)}
+:focus-visible{outline:2px solid var(--dot); outline-offset:3px}
+
+/* ---------- typographie ---------- */
+.d1,.d2,.d3,.d4{font-family:var(--serif); font-weight:400; margin:0; letter-spacing:-.015em; line-height:1.02; text-wrap:balance}
+.d1{font-size:clamp(3rem,8vw,7rem)}
+.d2{font-size:clamp(2.3rem,5.4vw,4.6rem)}
+.d3{font-size:clamp(1.75rem,3.2vw,2.9rem); line-height:1.06}
+.d4{font-size:clamp(1.35rem,2vw,1.9rem); line-height:1.12}
+.it{font-style:italic}
+.hl{color:var(--clay)}
+.label{
+  font-family:var(--sans); font-variation-settings:"wdth" 100,"wght" 500;
+  font-size:.68rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-40);
+  display:block; margin:0 0 1.4em;
+}
+.on-dark .label{color:var(--cream-70)}
+.lede{font-size:clamp(1.1rem,1.5vw,1.4rem); line-height:1.45; max-width:36ch; font-variation-settings:"wdth" 100,"wght" 340}
+p{max-width:62ch; margin:0 0 1.1em}
+.small{font-size:.85rem}
+.muted{color:var(--ink-62)}
+.on-dark .muted{color:var(--cream-70)}
+
+/* ---------- structure ---------- */
+.wrap{padding-inline:var(--gut); max-width:var(--maxw); margin-inline:auto}
+.sect{padding-block:var(--sect)}
+.on-dark{background:var(--terre); color:var(--paper)}
+.on-sand{background:var(--sand)}
+.rule{height:1px; background:var(--ink-14); border:0; margin:0}
+.cols{display:grid; grid-template-columns:1fr; gap:clamp(26px,4vw,62px)}
+@media(min-width:900px){
+  .c2{grid-template-columns:1fr 1fr}
+  .c-side{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+  .c-side-r{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
+}
+
+/* ---------- boutons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.7em; text-decoration:none; cursor:pointer;
+  background:var(--clay); color:var(--paper); border:1px solid var(--clay);
+  padding:1em 1.9em; min-height:46px; border-radius:999px;
+  font-family:var(--sans); font-variation-settings:"wdth" 100,"wght" 600;
+  text-transform:uppercase; letter-spacing:.14em; font-size:.7rem; white-space:nowrap;
+  transition:background .2s ease, transform .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn:hover{background:var(--clay-hot); border-color:var(--clay-hot); transform:translateY(-2px)}
+.btn-line{background:transparent; color:var(--ink); border-color:var(--ink-14)}
+.btn-line:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.on-dark .btn-line{color:var(--paper); border-color:var(--cream-18)}
+.on-dark .btn-line:hover{background:var(--paper); color:var(--terre); border-color:var(--paper)}
+.link{
+  display:inline-flex; align-items:center; gap:.55em; text-decoration:none;
+  font-variation-settings:"wdth" 100,"wght" 600; text-transform:uppercase;
+  letter-spacing:.14em; font-size:.7rem; padding-bottom:.5em;
+  border-bottom:1px solid var(--ink-14); transition:color .2s, border-color .2s, gap .2s;
+}
+.link:hover{color:var(--clay); border-color:var(--clay); gap:.9em}
+.on-dark .link{border-color:var(--cream-18)}
+.on-dark .link:hover{color:var(--paper); border-color:var(--paper)}
+
+/* ---------- navigation ---------- */
+.nav{
+  position:fixed; inset:0 0 auto 0; z-index:80;
+  display:grid; grid-template-columns:auto 1fr; align-items:center; gap:20px;
+  padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gut) 14px;
+  background:rgba(250,246,239,.92); backdrop-filter:blur(16px) saturate(1.2); -webkit-backdrop-filter:blur(16px) saturate(1.2);
+  border-bottom:1px solid var(--ink-14);
+  transition:background .3s ease, border-color .3s ease, color .3s ease;
+}
+.nav.over-hero{background:transparent; border-color:transparent; color:var(--paper); backdrop-filter:none; -webkit-backdrop-filter:none}
+.nav-logo{display:block}
+.nav-logo img{height:clamp(34px,3.4vw,46px); width:auto}
+.nav .lg-cream{display:none}
+.nav.over-hero .lg-ink{display:none}
+.nav.over-hero .lg-cream{display:block}
+.nav-right{justify-self:end; display:flex; align-items:center; gap:clamp(10px,1.5vw,26px)}
+.nav-links{display:none; gap:clamp(14px,1.6vw,26px); align-items:center; margin:0; padding:0}
+.nav-links > li{position:relative; list-style:none}
+.nav-links a, .nav-trigger{
+  background:none; border:0; padding:6px 0; cursor:pointer; color:inherit; font:inherit;
+  text-decoration:none; text-transform:uppercase; letter-spacing:.12em; font-size:.66rem;
+  font-variation-settings:"wdth" 100,"wght" 500; white-space:nowrap;
+  display:inline-flex; align-items:center; min-height:40px; line-height:1;
+}
+.drop a{min-height:0; line-height:1.4}
+.nav-links a:hover, .nav-trigger:hover, .nav-links a.active, .nav-trigger.active{color:var(--clay)}
+.nav.over-hero .nav-links a:hover, .nav.over-hero .nav-trigger:hover{color:var(--dot)}
+.drop{
+  position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(6px);
+  background:var(--paper); color:var(--ink); border:1px solid var(--ink-14); border-radius:4px;
+  padding:10px; min-width:250px; display:grid; gap:2px; margin:0; list-style:none;
+  opacity:0; visibility:hidden; transition:opacity .18s ease, transform .18s ease;
+  box-shadow:0 14px 40px rgba(36,28,22,.10);
+}
+.nav-links li:hover .drop, .nav-links li:focus-within .drop{opacity:1; visibility:visible; transform:translateX(-50%) translateY(0)}
+.drop a{display:block; padding:9px 12px; color:var(--ink); letter-spacing:.1em; border-radius:3px}
+.drop a:hover{background:var(--sand); color:var(--clay)}
+.lang{display:flex; align-items:center; gap:6px; font-size:.66rem; letter-spacing:.12em}
+.lang button{
+  background:none; border:0; cursor:pointer; color:inherit; font:inherit; padding:8px 2px;
+  opacity:.5; text-transform:uppercase; font-variation-settings:"wdth" 100,"wght" 600;
+}
+.lang button.on{opacity:1; color:var(--clay)}
+.nav.over-hero .lang button.on{color:var(--paper)}
+.lang span{opacity:.3}
+.nav .btn{padding:.75em 1.3em; min-height:40px; font-size:.64rem}
+.nav .btn-nav{display:none}
+@media(min-width:1120px){ .nav-links{display:flex} .nav .btn-nav{display:inline-flex} .burger{display:none!important} }
+.burger{width:44px; height:44px; border:0; background:none; cursor:pointer; display:grid; place-content:center; gap:6px; padding:0; color:inherit}
+.burger span{display:block; width:22px; height:1.5px; background:currentColor}
+
+.sheet{
+  position:fixed; inset:0; z-index:90; background:var(--terre-deep); color:var(--paper);
+  padding:calc(env(safe-area-inset-top,0px) + 78px) var(--gut) var(--gut); overflow-y:auto; display:none;
+}
+.sheet.open{display:block}
+.sheet .close{position:absolute; top:calc(env(safe-area-inset-top,0px) + 14px); right:var(--gut); width:44px; height:44px; background:none; border:0; color:inherit; font-size:1.9rem; line-height:1; cursor:pointer}
+.sheet ul{list-style:none; margin:0; padding:0}
+.sheet > ul > li{border-bottom:1px solid var(--cream-18); padding:14px 0}
+.sheet a{display:block; text-decoration:none; font-family:var(--serif); font-size:clamp(1.8rem,7vw,2.6rem); line-height:1.15}
+.sheet .sub a{font-family:var(--sans); font-size:.9rem; letter-spacing:.1em; text-transform:uppercase; padding:8px 0; color:var(--cream-70)}
+.sheet .btn{margin-top:26px; font-family:var(--sans); font-size:.7rem; display:inline-flex}
+
+/* ---------- vues ---------- */
+.view{display:none}
+.view.on{display:block; animation:fade .5s ease}
+@keyframes fade{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+.page-head{padding-block:calc(var(--sect) + 60px) var(--sect)}
+
+/* ---------- BANNIÈRE ---------- */
+.hero{
+  position:relative; isolation:isolate; overflow:hidden;
+  min-height:max(100vh, 620px); min-height:max(100svh, 620px);
+  background:var(--terre-deep); color:var(--paper);
+  display:grid; grid-template-rows:1fr auto;
+  padding:clamp(120px,17vh,180px) var(--gut) clamp(32px,6vh,64px);
+}
+.hero-ground{position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 78% 22%, rgba(194,91,52,.16), transparent 60%),
+    radial-gradient(90% 70% at 10% 100%, rgba(15,10,6,.55), transparent 70%);
+}
+.hero-grain{position:absolute; inset:-50%; z-index:-1; pointer-events:none; opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-topo{position:absolute; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none;
+  fill:none; stroke:rgba(250,246,239,.05); stroke-width:1}
+.hero-topo path{vector-effect:non-scaling-stroke}
+.hero-title{
+  font-family:var(--serif); font-weight:400;
+  font-size:clamp(3.1rem,7.6vw,7.6rem); line-height:.96; letter-spacing:-.02em;
+  margin:0; align-self:start; position:relative; z-index:2;
+}
+.hero-title span{display:block}
+.hero-trail{position:absolute; left:0; right:0; top:46%; height:34%; z-index:1; pointer-events:none}
+.hero-trail svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.hero-trail path{fill:none; stroke:var(--paper); stroke-width:1.6; stroke-linecap:round; vector-effect:non-scaling-stroke; opacity:.92}
+.hero-dot{position:absolute; left:93.25%; top:40.99%; width:clamp(12px,1.15vw,17px); aspect-ratio:1;
+  border-radius:50%; background:var(--dot); transform:translate(-50%,-50%)}
+.hero-dot::after{content:""; position:absolute; inset:0; border-radius:50%; border:1px solid var(--dot); opacity:0}
+.hero-foot{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:22px 40px; position:relative; z-index:2}
+.hero-lede{margin:0; max-width:30ch; font-size:clamp(1.05rem,1.4vw,1.3rem); line-height:1.45; color:rgba(250,246,239,.74)}
+.hero-btn{display:inline-flex; align-items:center; gap:.7em; min-height:48px; padding:0 1.5em;
+  border:1px solid rgba(250,246,239,.38); border-radius:999px; color:var(--paper); text-decoration:none;
+  font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; font-variation-settings:"wdth" 100,"wght" 560;
+  transition:background .25s ease, border-color .25s ease, color .25s ease}
+.hero-btn:hover{background:var(--paper); color:var(--terre-deep); border-color:var(--paper)}
+.hero-btn svg{width:14px; height:14px}
+@media (prefers-reduced-motion: no-preference){
+  .hero-title span{opacity:0; transform:translateY(.35em); animation:hUp .9s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero-title span:nth-child(2){animation-delay:.12s}
+  .hero-title span:nth-child(3){animation-delay:.24s}
+  .hero-trail svg{clip-path:inset(0 100% 0 0); animation:hDraw 2.2s cubic-bezier(.55,.1,.25,1) .45s forwards}
+  .hero-dot{opacity:0; transform:translate(-50%,-50%) scale(.2); animation:hDot .5s cubic-bezier(.3,1.6,.5,1) 2.55s forwards}
+  .hero-dot::after{animation:hPulse 2.6s ease-out 3.2s infinite}
+  .hero-foot{opacity:0; animation:hFade .9s ease 1.1s forwards}
+}
+@keyframes hUp{to{opacity:1; transform:none}}
+@keyframes hDraw{to{clip-path:inset(0 0 0 0)}}
+@keyframes hDot{to{opacity:1; transform:translate(-50%,-50%) scale(1)}}
+@keyframes hPulse{0%{opacity:.7; transform:scale(1)} 100%{opacity:0; transform:scale(3.2)}}
+@keyframes hFade{to{opacity:1}}
+@media (max-width:760px){
+  .hero{padding-top:clamp(110px,15vh,140px)}
+  .hero-title{font-size:clamp(2.7rem,13.6vw,4.6rem)}
+  .hero-trail{top:43%; height:20%}
+  .hero-foot{flex-direction:column; align-items:flex-start}
+}
+
+/* ---------- BANNIÈRE CLAIRE : ajouter class="hero-light" sur <body> ---------- */
+.hero-light .hero{background:var(--paper); color:var(--ink); border-bottom:1px solid var(--ink-14)}
+.hero-light .hero-ground{background:
+    radial-gradient(110% 85% at 80% 18%, rgba(226,212,190,.75), transparent 62%),
+    radial-gradient(70% 60% at 82% 30%, rgba(233,85,43,.07), transparent 70%),
+    linear-gradient(180deg, var(--paper) 0%, #F6EFE3 100%)}
+.hero-light .hero-grain{opacity:.045}
+.hero-light .hero-topo{stroke:rgba(36,28,22,.075)}
+.hero-light .hero-trail path{stroke:var(--ink); opacity:.88}
+.hero-light .hero-lede{color:var(--ink-62)}
+.hero-light .hero-btn{color:var(--ink); border-color:rgba(36,28,22,.28)}
+.hero-light .hero-btn:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.hero-light .nav.over-hero{color:var(--ink)}
+.hero-light .nav.over-hero .lg-ink{display:block}
+.hero-light .nav.over-hero .lg-cream{display:none}
+.hero-light .nav.over-hero .lang button.on{color:var(--clay)}
+.hero-light .nav.over-hero .nav-links a:hover, .hero-light .nav.over-hero .nav-trigger:hover{color:var(--clay)}
+
+/* ---------- photos ---------- */
+.r45{aspect-ratio:4/5} .r169{aspect-ratio:16/9}
+.ph{width:100%; height:100%; object-fit:cover; background:var(--sand-deep)}
+.ph-missing{display:grid; place-content:center; text-align:center; background:var(--sand-deep); color:var(--ink-40);
+  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; padding:1.5em}
+.on-dark .ph-missing{background:var(--terre-deep); color:var(--cream-70)}
+
+/* ---------- blocs éditoriaux ---------- */
+.offer{position:relative; display:block; text-decoration:none; background:var(--paper); border:1px solid var(--ink-14); padding:clamp(26px,3vw,44px); transition:background .3s ease, transform .3s ease}
+.offer:hover{background:var(--sand); transform:translateY(-4px)}
+.offer .num{font-family:var(--serif); font-size:1.6rem; color:var(--clay); display:block; margin-bottom:1.2em}
+.offer ul{margin:1.6em 0 2em; padding:0; list-style:none; display:grid; gap:.55em}
+.offer li{padding-left:1.2em; position:relative; font-size:.95rem; color:var(--ink-62)}
+.offer li::before{content:""; position:absolute; left:0; top:.62em; width:6px; height:1px; background:var(--clay)}
+
+.stack{list-style:none; margin:0; padding:0}
+.stack li{padding:.85em 0; border-bottom:1px solid var(--ink-14); display:flex; gap:1em; align-items:baseline}
+.on-dark .stack li{border-color:var(--cream-18)}
+.stack .k{font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--clay); min-width:2.2em}
+.on-dark .stack .k{color:var(--clay-hot)}
+
+.band{display:grid; grid-template-columns:1fr; gap:4px}
+.band .ph{aspect-ratio:4/5}
+@media(min-width:820px){ .band{grid-template-columns:1fr 1.6fr} .band .ph{aspect-ratio:auto; height:100%} .band .b-tall{aspect-ratio:4/5} }
+
+.quote{font-family:var(--serif); font-size:clamp(1.7rem,3.6vw,3.1rem); line-height:1.14; max-width:20ch; margin:0}
+
+.why{display:grid; gap:1px; background:var(--ink-14); border-block:1px solid var(--ink-14); grid-template-columns:1fr}
+@media(min-width:700px){ .why{grid-template-columns:1fr 1fr} }
+@media(min-width:1100px){ .why{grid-template-columns:repeat(4,1fr)} }
+.why > div{background:var(--paper); padding:clamp(22px,2.6vw,34px)}
+.why h4{font-family:var(--serif); font-weight:400; font-size:1.3rem; margin:0 0 .5em; line-height:1.15}
+.why p{font-size:.92rem; color:var(--ink-62); margin:0}
+
+.soon{border:1px dashed var(--ink-14); padding:clamp(34px,6vw,72px); text-align:center; background:var(--paper)}
+
+/* ---------- formulaire ---------- */
+.form{display:grid; gap:18px; max-width:560px}
+.f2{display:grid; gap:18px; grid-template-columns:1fr}
+@media(min-width:620px){ .f2{grid-template-columns:1fr 1fr} }
+.field label{display:block; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-62); margin-bottom:.6em}
+.field input, .field select, .field textarea{
+  width:100%; background:transparent; border:0; border-bottom:1px solid var(--ink-40);
+  padding:.7em 0; font:inherit; color:inherit; border-radius:0;
+}
+.field textarea{min-height:120px; resize:vertical}
+.field input:focus, .field select:focus, .field textarea:focus{outline:0; border-color:var(--clay)}
+.form-note{font-size:.8rem; color:var(--ink-62)}
+
+/* ---------- pied de page ---------- */
+.ftr{background:var(--terre-deep); color:var(--paper); padding:clamp(52px,8vh,96px) var(--gut) calc(env(safe-area-inset-bottom,0px) + 26px)}
+.ftr-in{max-width:var(--maxw); margin-inline:auto}
+.ftr-top{display:grid; gap:clamp(30px,4vw,60px); grid-template-columns:1fr}
+@media(min-width:820px){ .ftr-top{grid-template-columns:1.4fr 1fr 1fr} }
+.ftr img.lg{width:min(240px,60vw); height:auto; margin-bottom:1.6em}
+.ftr ul{list-style:none; margin:0; padding:0; display:grid; gap:.7em}
+.ftr a{text-decoration:none; font-size:.88rem; color:var(--cream-70)}
+.ftr a:hover{color:var(--dot)}
+.ftr .muted{color:var(--cream-70)}
+.ftr-bottom{display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; margin-top:clamp(38px,6vh,64px); padding-top:20px; border-top:1px solid var(--cream-18); font-size:.74rem; color:var(--cream-70)}
+
+/* ---------- apparitions ---------- */
+.rv{opacity:0; transform:translateY(16px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1; transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv,.offer,.btn,.link{transition:none}
+  .rv{opacity:1; transform:none}
+  .view.on{animation:none}
+}
+</style>
+</head>
+<!-- Bannière claire : class="hero-light". Pour revenir à la bannière brune, enlève simplement cette classe. -->
+<body class="hero-light">
+
+<!-- ================= NAVIGATION ================= -->
+<header class="nav over-hero" id="nav">
+  <a class="nav-logo" href="#/accueil" aria-label="GOOD PACE, accueil">
+    <img class="lg-ink" src="assets/logo-ink-mark.png" alt="GOOD PACE">
+    <img class="lg-cream" src="assets/logo-cream-mark.png" alt="GOOD PACE">
+  </a>
+
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#/accueil" data-nav="accueil" data-en="Home">Accueil</a></li>
+      <li>
+        <button class="nav-trigger" data-nav="accompagnement" data-en="Services">Accompagnement</button>
+        <ul class="drop">
+          <li><a href="#/accompagnement/community-management">Community Management</a></li>
+          <li><a href="#/accompagnement/brand-partnerships">Brand Partnerships</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="nav-trigger" data-nav="communaute" data-en="Community">Communauté</button>
+        <ul class="drop">
+          <li><a href="#/communaute">Join the Good Pacers</a></li>
+          <li><a href="#/communaute/camp">The Good Pace Camp</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="nav-trigger" data-nav="histoire" data-en="My story">Mon histoire</button>
+        <ul class="drop">
+          <li><a href="#/histoire/qui-suis-je" data-en="Who am I?">Qui suis-je ?</a></li>
+          <li><a href="#/histoire/origine" data-en="How GOOD PACE started">Comment GOOD PACE a été créé ?</a></li>
+        </ul>
+      </li>
+      <li><a href="#/partenaires" data-nav="partenaires" data-en="Partners">Partenaires</a></li>
+      <li><a href="#/contact" data-nav="contact" data-en="Contact">Contact</a></li>
+    </ul>
+
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button id="btn-fr" class="on" aria-pressed="true">FR</button><span>/</span><button id="btn-en" aria-pressed="false">EN</button>
+    </div>
+
+    <a class="btn btn-nav" href="#/contact">Join Good Pace</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ================= MENU MOBILE ================= -->
+<nav class="sheet" id="sheet" aria-label="Menu">
+  <button class="close" id="sheet-close" aria-label="Fermer">&times;</button>
+  <ul>
+    <li><a href="#/accueil" data-en="Home">Accueil</a></li>
+    <li>
+      <a href="#/accompagnement" data-en="Services">Accompagnement</a>
+      <ul class="sub">
+        <li><a href="#/accompagnement/community-management">Community Management</a></li>
+        <li><a href="#/accompagnement/brand-partnerships">Brand Partnerships</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#/communaute" data-en="Community">Communauté</a>
+      <ul class="sub">
+        <li><a href="#/communaute">Join the Good Pacers</a></li>
+        <li><a href="#/communaute/camp">The Good Pace Camp</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#/histoire" data-en="My story">Mon histoire</a>
+      <ul class="sub">
+        <li><a href="#/histoire/qui-suis-je" data-en="Who am I?">Qui suis-je ?</a></li>
+        <li><a href="#/histoire/origine" data-en="How GOOD PACE started">Comment GOOD PACE a été créé ?</a></li>
+      </ul>
+    </li>
+    <li><a href="#/partenaires" data-en="Partners">Partenaires</a></li>
+    <li><a href="#/contact" data-en="Contact">Contact</a></li>
+  </ul>
+  <a class="btn" href="#/contact">Join Good Pace</a>
+</nav>
+
+<main id="top">
+
+<!-- ================================================================
+     VUE 1 — ACCUEIL
+     ================================================================ -->
+<div class="view on" id="v-accueil">
+
+  <!-- BANNIÈRE — sans photo : la ligne du logo traverse l'écran et finit sur le point orange -->
+  <section class="hero">
+    <div class="hero-ground" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
+    <svg class="hero-topo" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M1235,250 L1237,251 L1239,253 L1240,254 L1241,256 L1241,257 L1241,259 L1241,260 L1240,262 L1240,263 L1239,264 L1238,266 L1237,267 L1236,268 L1235,270 L1234,271 L1233,272 L1232,273 L1230,274 L1228,275 L1226,276 L1224,277 L1222,277 L1219,277 L1216,277 L1213,277 L1211,276 L1208,276 L1206,275 L1203,275 L1201,275 L1199,274 L1198,274 L1197,275 L1195,275 L1194,276 L1193,277 L1192,278 L1191,279 L1190,280 L1188,281 L1187,282 L1185,283 L1183,283 L1182,283 L1180,283 L1178,283 L1177,283 L1175,283 L1173,283 L1171,282 L1170,282 L1168,282 L1166,282 L1164,282 L1163,282 L1161,282 L1159,282 L1157,282 L1155,282 L1153,282 L1151,281 L1149,281 L1147,280 L1146,279 L1144,278 L1143,277 L1142,276 L1141,275 L1139,274 L1138,273 L1136,273 L1135,272 L1133,271 L1131,270 L1129,270 L1127,269 L1125,268 L1123,267 L1121,266 L1120,264 L1119,263 L1119,262 L1119,260 L1120,259 L1121,257 L1123,255 L1124,254 L1126,252 L1128,251 L1130,250 L1132,249 L1134,248 L1136,247 L1137,246 L1138,245 L1139,244 L1139,243 L1140,242 L1140,241 L1141,240 L1141,240 L1142,239 L1142,238 L1143,237 L1144,236 L1144,235 L1145,234 L1146,233 L1146,232 L1146,231 L1146,230 L1146,228 L1146,227 L1146,225 L1146,223 L1146,221 L1147,219 L1147,217 L1148,216 L1149,214 L1150,213 L1152,212 L1154,211 L1156,211 L1158,210 L1161,211 L1163,211 L1166,211 L1168,212 L1170,212 L1172,213 L1174,213 L1176,213 L1178,214 L1180,214 L1182,214 L1184,213 L1186,213 L1188,213 L1190,214 L1192,214 L1193,214 L1195,215 L1197,216 L1198,216 L1200,217 L1201,218 L1202,219 L1204,220 L1205,221 L1206,222 L1207,223 L1209,224 L1210,224 L1212,225 L1213,226 L1215,226 L1216,227 L1217,228 L1218,229 L1219,230 L1220,231 L1220,232 L1220,233 L1220,235 L1219,236 L1219,237 L1219,239 L1219,240 L1219,241 L1219,242 L1220,242 L1221,243 L1222,244 L1224,245 L1226,246 L1228,247 L1231,248 L1233,249 L1235,250Z"/>
+      <path d="M1294,250 L1296,253 L1297,255 L1297,258 L1297,261 L1298,264 L1297,267 L1297,270 L1298,272 L1298,275 L1298,279 L1298,282 L1297,285 L1297,288 L1296,291 L1294,294 L1292,296 L1288,299 L1284,301 L1280,302 L1274,303 L1269,303 L1262,303 L1256,303 L1250,302 L1244,301 L1238,300 L1233,299 L1229,298 L1225,298 L1221,298 L1218,298 L1216,299 L1213,300 L1211,301 L1209,303 L1206,304 L1204,306 L1202,308 L1199,309 L1196,310 L1193,311 L1190,312 L1187,313 L1183,314 L1180,314 L1177,315 L1173,316 L1169,317 L1166,318 L1162,319 L1157,321 L1153,322 L1149,323 L1144,324 L1139,325 L1135,325 L1130,324 L1126,324 L1122,322 L1119,320 L1116,318 L1113,316 L1111,313 L1109,310 L1107,308 L1106,305 L1104,303 L1102,300 L1099,299 L1096,297 L1093,295 L1090,294 L1086,292 L1082,291 L1078,289 L1075,287 L1072,285 L1069,283 L1067,280 L1066,278 L1066,275 L1066,272 L1067,269 L1069,266 L1071,263 L1073,260 L1075,257 L1077,255 L1079,252 L1081,250 L1083,248 L1084,246 L1085,243 L1086,241 L1087,239 L1089,237 L1090,235 L1092,233 L1095,232 L1097,230 L1100,228 L1102,227 L1105,226 L1107,224 L1109,223 L1111,221 L1111,219 L1112,217 L1112,214 L1111,211 L1110,208 L1109,204 L1108,200 L1107,196 L1107,192 L1107,188 L1108,184 L1109,180 L1112,177 L1114,174 L1118,172 L1122,171 L1126,170 L1131,169 L1136,169 L1141,169 L1145,169 L1150,170 L1154,170 L1159,170 L1163,171 L1168,171 L1172,171 L1176,172 L1180,172 L1184,173 L1188,174 L1192,175 L1195,177 L1199,179 L1202,181 L1205,184 L1207,186 L1210,189 L1212,191 L1215,193 L1217,194 L1220,196 L1223,197 L1226,197 L1229,198 L1233,198 L1237,198 L1241,198 L1245,199 L1248,199 L1252,200 L1255,202 L1258,203 L1260,205 L1261,208 L1262,210 L1263,213 L1263,215 L1263,218 L1263,221 L1263,223 L1264,225 L1265,227 L1267,229 L1269,231 L1272,233 L1275,234 L1278,236 L1281,238 L1284,240 L1288,242 L1290,245 L1293,247 L1294,250Z"/>
+      <path d="M1352,250 L1351,254 L1350,258 L1350,262 L1350,266 L1350,270 L1351,274 L1352,279 L1354,283 L1355,288 L1357,293 L1358,298 L1358,303 L1357,307 L1354,312 L1351,316 L1346,319 L1340,322 L1333,324 L1325,325 L1316,326 L1307,326 L1298,326 L1290,326 L1281,325 L1274,325 L1267,324 L1261,324 L1255,324 L1250,325 L1246,326 L1241,327 L1237,328 L1233,329 L1229,331 L1225,332 L1220,333 L1216,334 L1212,334 L1207,335 L1203,336 L1198,337 L1194,339 L1189,340 L1185,343 L1180,345 L1175,349 L1169,352 L1163,356 L1157,360 L1150,364 L1142,368 L1135,371 L1127,373 L1119,374 L1112,374 L1105,374 L1099,372 L1093,369 L1088,366 L1083,362 L1080,357 L1076,353 L1073,348 L1070,344 L1067,339 L1064,336 L1061,332 L1057,329 L1054,326 L1049,323 L1045,320 L1041,317 L1037,314 L1034,311 L1031,307 L1029,304 L1027,300 L1027,295 L1027,291 L1027,287 L1028,283 L1029,279 L1029,275 L1030,271 L1030,268 L1030,264 L1029,261 L1028,257 L1027,254 L1026,250 L1025,246 L1025,243 L1025,239 L1026,236 L1029,232 L1032,229 L1036,226 L1040,223 L1045,221 L1050,218 L1055,216 L1060,214 L1063,212 L1066,210 L1068,207 L1069,204 L1069,200 L1069,196 L1068,191 L1066,186 L1065,181 L1064,175 L1063,169 L1063,163 L1064,158 L1066,153 L1069,148 L1073,144 L1077,140 L1082,137 L1088,135 L1094,133 L1100,131 L1107,129 L1113,127 L1120,126 L1126,125 L1133,123 L1139,122 L1146,122 L1153,122 L1160,122 L1167,123 L1173,125 L1180,128 L1186,131 L1192,135 L1197,140 L1202,145 L1206,150 L1210,155 L1214,160 L1217,164 L1220,167 L1224,170 L1227,172 L1231,173 L1236,174 L1241,174 L1246,173 L1252,173 L1259,172 L1265,172 L1271,172 L1277,173 L1283,174 L1288,176 L1292,178 L1296,180 L1299,183 L1302,186 L1305,189 L1308,193 L1311,196 L1314,199 L1317,201 L1321,204 L1325,207 L1329,210 L1334,213 L1338,216 L1342,219 L1346,222 L1349,226 L1351,230 L1353,234 L1354,238 L1354,242 L1353,246 L1352,250Z"/>
+      <path d="M1410,250 L1407,255 L1406,261 L1405,266 L1405,271 L1406,277 L1408,282 L1410,288 L1411,294 L1413,300 L1413,306 L1412,312 L1409,318 L1405,323 L1400,328 L1393,332 L1386,336 L1377,339 L1368,341 L1358,343 L1349,345 L1340,346 L1332,348 L1324,349 L1316,351 L1309,353 L1303,355 L1296,357 L1290,358 L1283,360 L1277,362 L1270,363 L1263,363 L1256,363 L1248,363 L1241,362 L1234,362 L1228,361 L1221,361 L1215,361 L1210,362 L1204,365 L1199,368 L1193,372 L1187,377 L1180,383 L1173,390 L1165,397 L1156,403 L1146,409 L1136,415 L1126,419 L1116,422 L1105,424 L1095,424 L1086,423 L1077,420 L1069,417 L1061,413 L1054,408 L1048,403 L1042,397 L1036,392 L1031,387 L1025,382 L1020,377 L1015,372 L1010,368 L1005,363 L1001,358 L997,352 L995,347 L993,341 L992,334 L993,328 L994,322 L995,315 L997,309 L999,304 L1001,298 L1002,293 L1002,289 L1001,284 L998,280 L995,276 L990,272 L986,268 L980,264 L975,260 L970,255 L967,250 L964,245 L963,240 L964,235 L966,230 L970,225 L974,221 L980,217 L985,213 L991,209 L996,205 L1001,202 L1004,198 L1007,194 L1009,189 L1010,184 L1010,179 L1010,173 L1009,167 L1009,161 L1010,155 L1011,148 L1013,142 L1016,137 L1020,131 L1024,126 L1030,122 L1036,118 L1042,113 L1048,110 L1055,106 L1062,102 L1068,97 L1075,93 L1082,89 L1090,85 L1097,81 L1106,77 L1114,74 L1123,72 L1133,71 L1142,72 L1152,74 L1162,77 L1171,82 L1180,88 L1188,95 L1196,102 L1202,109 L1208,117 L1213,124 L1218,130 L1223,135 L1228,139 L1232,143 L1237,145 L1243,146 L1249,147 L1255,147 L1262,147 L1269,147 L1277,147 L1284,147 L1291,148 L1298,149 L1305,151 L1311,153 L1317,155 L1324,157 L1330,160 L1337,162 L1344,165 L1352,167 L1360,169 L1369,171 L1378,174 L1387,177 L1396,180 L1404,183 L1412,188 L1418,192 L1423,197 L1427,203 L1428,209 L1428,215 L1427,221 L1424,227 L1421,233 L1417,239 L1413,245 L1410,250Z"/>
+      <path d="M1478,250 L1475,257 L1473,264 L1472,270 L1471,277 L1471,284 L1470,291 L1468,298 L1465,304 L1461,311 L1456,317 L1449,323 L1442,328 L1434,333 L1425,337 L1417,341 L1408,345 L1400,349 L1393,353 L1386,357 L1380,362 L1374,367 L1369,372 L1364,377 L1358,382 L1352,387 L1346,391 L1338,395 L1330,398 L1321,400 L1311,401 L1300,401 L1290,400 L1279,399 L1269,397 L1259,396 L1250,394 L1242,394 L1234,395 L1227,397 L1220,400 L1213,405 L1205,411 L1198,417 L1189,425 L1180,433 L1170,440 L1159,447 L1148,453 L1136,459 L1124,462 L1112,465 L1099,466 L1087,466 L1075,465 L1064,462 L1053,460 L1042,456 L1032,453 L1021,449 L1011,445 L1001,441 L991,437 L982,432 L973,427 L965,421 L958,414 L953,407 L949,398 L947,390 L947,380 L949,370 L952,360 L956,351 L961,341 L966,332 L971,324 L975,317 L977,310 L978,305 L976,299 L973,295 L968,291 L962,286 L954,282 L946,278 L938,273 L930,268 L923,262 L917,256 L914,250 L911,244 L910,237 L911,231 L913,225 L915,219 L918,213 L920,207 L923,201 L924,195 L926,188 L926,182 L926,175 L927,168 L927,160 L928,153 L929,146 L932,139 L936,132 L941,126 L947,120 L955,115 L963,110 L972,106 L981,102 L990,99 L998,95 L1006,91 L1014,86 L1021,81 L1028,75 L1035,69 L1042,62 L1050,55 L1058,48 L1066,42 L1076,37 L1086,32 L1098,30 L1109,29 L1122,30 L1134,32 L1146,36 L1158,42 L1169,49 L1180,56 L1190,64 L1199,72 L1207,79 L1215,86 L1222,92 L1229,97 L1236,101 L1243,104 L1250,107 L1257,109 L1264,111 L1272,113 L1279,115 L1286,117 L1293,119 L1300,122 L1307,125 L1313,128 L1320,130 L1328,133 L1336,135 L1345,136 L1355,137 L1367,138 L1380,138 L1394,139 L1409,139 L1424,140 L1440,142 L1455,144 L1469,147 L1482,152 L1492,157 L1501,164 L1507,171 L1510,179 L1511,187 L1509,195 L1506,204 L1501,212 L1496,220 L1491,228 L1486,236 L1481,243 L1478,250Z"/>
+      <path d="M1563,250 L1560,259 L1556,268 L1551,276 L1544,284 L1537,292 L1528,299 L1517,306 L1505,312 L1493,318 L1480,323 L1468,328 L1457,332 L1446,337 L1437,341 L1430,346 L1425,352 L1421,358 L1418,365 L1416,373 L1415,381 L1413,390 L1411,399 L1408,407 L1403,415 L1396,422 L1388,428 L1379,432 L1368,435 L1356,437 L1343,438 L1330,439 L1318,438 L1306,438 L1294,438 L1283,439 L1273,441 L1263,444 L1254,448 L1245,452 L1235,458 L1225,465 L1215,471 L1204,478 L1192,484 L1180,489 L1167,493 L1154,497 L1141,499 L1127,500 L1114,500 L1100,500 L1087,499 L1073,498 L1060,497 L1046,496 L1031,495 L1017,495 L1002,494 L987,492 L972,490 L957,487 L944,483 L932,478 L921,471 L913,462 L907,452 L903,441 L902,429 L904,416 L908,402 L913,389 L919,376 L925,365 L931,354 L936,344 L940,335 L942,327 L941,321 L939,315 L935,310 L929,304 L922,299 L914,294 L906,289 L899,283 L892,277 L886,271 L881,264 L877,257 L874,250 L871,243 L868,235 L865,228 L862,220 L858,212 L853,204 L848,195 L843,186 L837,176 L833,166 L829,155 L827,145 L826,135 L829,125 L833,116 L840,108 L849,101 L860,95 L873,90 L887,86 L901,82 L915,79 L929,76 L941,73 L953,70 L964,65 L973,60 L982,54 L990,48 L998,40 L1007,33 L1016,25 L1025,18 L1036,12 L1047,7 L1060,4 L1073,2 L1087,2 L1101,3 L1115,6 L1129,9 L1143,14 L1156,19 L1168,24 L1180,29 L1191,34 L1202,38 L1213,42 L1223,45 L1234,48 L1244,50 L1254,53 L1263,56 L1273,60 L1281,64 L1290,69 L1297,75 L1304,80 L1310,86 L1317,92 L1323,98 L1329,102 L1337,106 L1346,109 L1356,110 L1368,111 L1382,110 L1398,109 L1416,108 L1436,107 L1456,106 L1477,106 L1497,107 L1516,110 L1534,114 L1549,119 L1561,126 L1571,134 L1578,143 L1583,152 L1585,162 L1585,173 L1583,183 L1581,193 L1578,203 L1575,213 L1572,223 L1569,232 L1566,241 L1563,250Z"/>
+      <path d="M1658,250 L1650,261 L1639,271 L1625,281 L1609,290 L1591,298 L1572,306 L1552,312 L1532,317 L1513,322 L1497,327 L1482,331 L1471,336 L1462,342 L1456,348 L1453,355 L1452,363 L1452,372 L1453,382 L1454,393 L1454,403 L1453,414 L1451,424 L1446,434 L1440,442 L1432,450 L1422,456 L1411,462 L1399,467 L1387,471 L1375,475 L1363,480 L1351,484 L1340,490 L1329,495 L1317,502 L1306,508 L1294,515 L1282,522 L1269,529 L1255,535 L1241,539 L1226,542 L1211,544 L1195,545 L1180,544 L1165,542 L1150,539 L1135,536 L1120,534 L1106,531 L1091,530 L1076,529 L1060,529 L1044,530 L1027,531 L1009,533 L990,534 L972,535 L954,534 L936,532 L920,528 L905,522 L893,513 L883,503 L876,491 L872,478 L870,464 L871,449 L873,434 L876,420 L879,407 L883,394 L886,382 L887,372 L888,362 L887,354 L885,346 L881,339 L877,331 L873,324 L869,317 L865,310 L862,303 L859,296 L856,288 L854,281 L852,273 L849,265 L844,258 L839,250 L831,242 L822,233 L811,224 L799,214 L785,204 L771,192 L757,180 L745,167 L735,154 L727,140 L723,127 L723,114 L726,102 L733,92 L744,82 L757,74 L773,67 L791,61 L809,57 L827,53 L845,49 L862,45 L877,41 L892,37 L905,32 L918,26 L930,20 L942,14 L954,8 L966,3 L979,-2 L993,-6 L1007,-9 L1022,-11 L1037,-11 L1053,-11 L1069,-9 L1084,-7 L1099,-5 L1113,-3 L1127,-1 L1141,-0 L1154,-0 L1167,-1 L1180,-2 L1193,-4 L1207,-5 L1220,-6 L1234,-7 L1248,-6 L1261,-4 L1274,-1 L1286,4 L1297,11 L1307,18 L1315,27 L1323,35 L1331,44 L1338,52 L1345,59 L1354,65 L1363,69 L1374,72 L1387,73 L1403,73 L1420,72 L1439,71 L1460,70 L1481,69 L1503,69 L1525,71 L1545,73 L1564,77 L1582,83 L1597,90 L1610,98 L1621,107 L1629,117 L1637,127 L1643,138 L1648,149 L1652,160 L1656,171 L1660,182 L1663,193 L1665,205 L1666,216 L1665,227 L1663,239 L1658,250Z"/>
+      <path d="M1738,250 L1722,263 L1703,274 L1681,285 L1656,295 L1631,303 L1606,310 L1583,317 L1561,323 L1543,329 L1528,334 L1516,340 L1507,347 L1502,355 L1498,363 L1497,372 L1496,382 L1495,392 L1494,402 L1492,413 L1489,423 L1485,433 L1479,443 L1472,452 L1465,461 L1456,470 L1448,478 L1439,488 L1431,498 L1422,508 L1414,520 L1405,532 L1396,545 L1385,558 L1374,570 L1361,582 L1347,593 L1331,602 L1314,609 L1296,613 L1277,615 L1257,614 L1237,612 L1217,607 L1198,601 L1180,594 L1162,587 L1145,581 L1129,575 L1112,571 L1096,568 L1079,567 L1062,567 L1044,567 L1025,569 L1005,570 L986,570 L966,570 L948,568 L930,564 L913,558 L899,550 L886,540 L876,529 L868,517 L861,503 L856,490 L852,477 L848,464 L844,451 L841,440 L836,429 L831,419 L826,409 L820,400 L815,391 L810,381 L806,372 L803,362 L801,352 L802,342 L803,332 L806,322 L809,312 L811,302 L813,293 L813,284 L811,276 L806,267 L797,259 L785,250 L770,240 L753,230 L734,219 L713,206 L694,193 L675,178 L659,163 L646,148 L637,132 L633,117 L633,103 L637,89 L646,76 L658,65 L672,55 L688,45 L706,37 L724,29 L742,22 L760,15 L777,8 L794,2 L811,-5 L827,-11 L844,-17 L862,-22 L880,-26 L898,-28 L918,-30 L938,-30 L958,-28 L978,-26 L998,-22 L1017,-18 L1036,-14 L1053,-11 L1069,-8 L1084,-7 L1098,-8 L1111,-10 L1124,-14 L1137,-20 L1151,-26 L1165,-33 L1180,-41 L1196,-47 L1212,-52 L1228,-56 L1245,-58 L1261,-57 L1277,-54 L1292,-49 L1306,-43 L1319,-35 L1331,-27 L1343,-18 L1354,-10 L1365,-3 L1377,3 L1389,8 L1403,12 L1419,14 L1436,15 L1454,16 L1473,17 L1493,18 L1513,20 L1533,23 L1552,27 L1570,32 L1586,38 L1602,46 L1615,54 L1628,64 L1639,73 L1650,83 L1661,93 L1673,104 L1684,114 L1696,125 L1709,135 L1721,147 L1733,158 L1743,170 L1751,183 L1756,196 L1758,209 L1756,223 L1749,237 L1738,250Z"/>
+      <path d="M1783,250 L1763,264 L1741,276 L1717,288 L1694,298 L1671,308 L1650,317 L1632,325 L1616,333 L1603,342 L1593,350 L1584,359 L1577,368 L1570,377 L1564,386 L1557,395 L1550,404 L1543,413 L1534,422 L1525,430 L1517,438 L1508,447 L1500,456 L1493,466 L1487,477 L1482,490 L1478,505 L1475,521 L1472,539 L1468,558 L1464,577 L1457,598 L1449,617 L1437,635 L1423,652 L1407,665 L1388,676 L1366,683 L1343,687 L1319,687 L1295,685 L1271,680 L1247,673 L1223,665 L1201,656 L1180,648 L1160,640 L1140,634 L1120,629 L1101,624 L1082,621 L1062,619 L1043,616 L1024,613 L1005,610 L986,605 L968,599 L952,592 L936,583 L922,573 L910,562 L898,550 L888,539 L878,527 L868,516 L857,506 L846,497 L834,489 L821,481 L807,474 L792,467 L777,460 L763,452 L750,443 L739,434 L731,423 L725,411 L722,399 L722,386 L725,372 L730,359 L735,346 L741,334 L746,322 L749,311 L748,301 L745,291 L737,281 L726,271 L711,261 L694,250 L674,238 L654,225 L633,212 L615,197 L598,182 L585,166 L575,149 L569,133 L567,117 L569,102 L574,87 L581,72 L591,58 L602,45 L614,32 L626,19 L639,7 L653,-5 L667,-17 L682,-29 L698,-39 L716,-49 L736,-56 L758,-62 L782,-66 L808,-68 L835,-67 L863,-64 L891,-58 L919,-52 L946,-44 L971,-36 L994,-28 L1015,-22 L1034,-17 L1051,-15 L1066,-15 L1080,-18 L1093,-23 L1106,-31 L1119,-40 L1133,-50 L1147,-60 L1163,-70 L1180,-79 L1198,-86 L1216,-91 L1234,-94 L1253,-95 L1271,-94 L1289,-92 L1307,-89 L1324,-85 L1341,-81 L1359,-77 L1376,-74 L1395,-72 L1414,-70 L1434,-68 L1455,-67 L1476,-66 L1497,-64 L1518,-60 L1539,-56 L1558,-50 L1575,-43 L1591,-34 L1605,-23 L1617,-12 L1627,0 L1636,12 L1645,25 L1654,37 L1663,49 L1674,60 L1687,70 L1702,80 L1718,90 L1735,100 L1754,111 L1772,122 L1789,134 L1803,146 L1814,160 L1821,175 L1824,190 L1821,205 L1813,220 L1800,236 L1783,250Z"/>
+    </svg>
+
+    <h1 class="hero-title">
+      <span data-en="Your pace.">Ton rythme.</span><span data-en="Your story.">Ton histoire.</span><span class="it" data-en="Your community.">Ta communauté.</span>
+    </h1>
+
+    <div class="hero-trail" aria-hidden="true">
+      <svg viewBox="0 0 1600 400" preserveAspectRatio="none"><path d="M0.0,353.9 L6.0,354.7 L12.0,355.2 L18.0,355.5 L24.0,355.7 L30.0,355.7 L36.0,355.6 L42.0,355.4 L48.0,355.1 L54.0,354.9 L60.0,354.6 L66.0,354.3 L72.0,354.1 L78.0,353.9 L84.0,353.9 L90.0,353.9 L96.0,354.0 L102.0,354.1 L108.0,354.2 L114.0,354.3 L120.0,354.3 L126.0,354.3 L132.0,354.1 L138.0,353.7 L144.0,353.2 L150.0,352.4 L156.0,351.5 L162.0,350.3 L168.0,348.9 L174.0,347.4 L180.0,345.7 L186.0,344.0 L192.0,342.2 L198.0,340.4 L204.0,338.6 L210.0,337.0 L216.0,335.4 L222.0,334.1 L228.0,332.9 L234.0,331.8 L240.0,330.9 L246.0,330.2 L252.0,329.6 L258.0,329.1 L264.0,328.6 L270.0,328.1 L276.0,327.6 L282.0,327.0 L288.0,326.3 L294.0,325.5 L300.0,324.5 L306.0,323.5 L312.0,322.3 L318.0,321.0 L324.0,319.7 L330.0,318.4 L336.0,317.1 L342.0,315.9 L348.0,314.8 L354.0,313.9 L360.0,313.2 L366.0,312.7 L372.0,312.4 L378.0,312.4 L384.0,312.6 L390.0,312.9 L396.0,313.4 L402.0,314.0 L408.0,314.6 L414.0,315.2 L420.0,315.8 L426.0,316.2 L432.0,316.5 L438.0,316.6 L444.0,316.5 L450.0,316.2 L456.0,315.7 L462.0,315.0 L468.0,314.2 L474.0,313.2 L480.0,312.3 L486.0,311.3 L492.0,310.3 L498.0,309.5 L504.0,308.7 L510.0,308.1 L516.0,307.7 L522.0,307.4 L528.0,307.3 L534.0,307.2 L540.0,307.3 L546.0,307.3 L552.0,307.4 L558.0,307.3 L564.0,307.2 L570.0,306.8 L576.0,306.2 L582.0,305.4 L588.0,304.3 L594.0,302.9 L600.0,301.3 L606.0,299.5 L612.0,297.5 L618.0,295.5 L624.0,293.3 L630.0,291.2 L636.0,289.1 L642.0,287.1 L648.0,285.3 L654.0,283.7 L660.0,282.4 L666.0,281.2 L672.0,280.3 L678.0,279.6 L684.0,279.0 L690.0,278.5 L696.0,278.1 L702.0,277.7 L708.0,277.2 L714.0,276.7 L720.0,275.9 L726.0,275.0 L732.0,273.9 L738.0,272.6 L744.0,271.1 L750.0,269.4 L756.0,267.7 L762.0,265.9 L768.0,264.1 L774.0,262.3 L780.0,260.7 L786.0,259.3 L792.0,258.1 L798.0,257.2 L804.0,256.6 L810.0,256.2 L816.0,256.1 L822.0,256.2 L828.0,256.6 L834.0,257.0 L840.0,257.5 L846.0,258.0 L852.0,258.5 L858.0,258.8 L864.0,258.9 L870.0,258.8 L876.0,258.4 L882.0,257.7 L888.0,256.8 L894.0,255.7 L900.0,254.4 L906.0,253.0 L912.0,251.5 L918.0,250.0 L924.0,248.6 L930.0,247.3 L936.0,246.1 L942.0,245.2 L948.0,244.5 L954.0,244.0 L960.0,243.8 L966.0,243.7 L972.0,243.8 L978.0,243.9 L984.0,244.1 L990.0,244.2 L996.0,244.1 L1002.0,243.9 L1008.0,243.4 L1014.0,242.6 L1020.0,241.5 L1026.0,240.1 L1032.0,238.4 L1038.0,236.5 L1044.0,234.3 L1050.0,232.0 L1056.0,229.6 L1062.0,227.2 L1068.0,224.8 L1074.0,222.6 L1080.0,220.7 L1086.0,218.9 L1092.0,217.5 L1098.0,216.3 L1104.0,215.4 L1110.0,214.8 L1116.0,214.3 L1122.0,214.0 L1128.0,213.8 L1134.0,213.6 L1140.0,213.3 L1146.0,212.8 L1152.0,212.2 L1158.0,211.3 L1164.0,210.2 L1170.0,208.7 L1176.0,207.1 L1182.0,205.2 L1188.0,203.1 L1194.0,200.9 L1200.0,198.7 L1206.0,196.5 L1212.0,194.5 L1218.0,192.6 L1224.0,191.0 L1230.0,189.7 L1236.0,188.8 L1242.0,188.2 L1248.0,187.9 L1254.0,187.8 L1260.0,188.1 L1266.0,188.4 L1272.0,188.9 L1278.0,189.4 L1284.0,189.8 L1290.0,190.0 L1296.0,190.0 L1302.0,189.8 L1308.0,189.2 L1314.0,188.3 L1320.0,187.1 L1326.0,185.6 L1332.0,183.9 L1338.0,182.0 L1344.0,180.0 L1350.0,178.1 L1356.0,176.2 L1362.0,174.4 L1368.0,172.9 L1374.0,171.6 L1380.0,170.6 L1386.0,170.0 L1392.0,169.6 L1398.0,169.5 L1404.0,169.6 L1410.0,169.8 L1416.0,170.0 L1422.0,170.3 L1428.0,170.4 L1434.0,170.3 L1440.0,170.0"/></svg>
+      <span class="hero-dot"></span>
+    </div>
+
+    <div class="hero-foot">
+      <p class="hero-lede" data-en="We walk beside athletes, far beyond the finish line.">Nous accompagnons les athlètes bien au-delà de la ligne d'arrivée.</p>
+      <a class="hero-btn" href="#intro"><span data-en="Discover Good Pace">Découvrir Good Pace</span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></a>
+    </div>
+  </section>
+
+  <!-- INTRODUCTION -->
+  <section class="sect wrap" id="intro">
+    <div class="cols c-side">
+      <span class="label rv">01 — Intro</span>
+      <div class="rv">
+        <h2 class="d2" data-en="GOOD PACE means supporting athletes beyond their performance.">GOOD PACE, c'est accompagner les athlètes au-delà de leur performance.</h2>
+        <p style="margin-top:1.8em" data-en="Behind every result there is a person. A way of training, of failing, of starting again. A story that deserves to be told properly, a community that grows around it, and brands that can genuinely belong to it.">Derrière chaque résultat, il y a une personne. Une façon de s'entraîner, d'échouer, de recommencer. Une histoire qui mérite d'être racontée correctement, une communauté qui se construit autour, et des marques qui peuvent vraiment y trouver leur place.</p>
+        <p data-en="That is the work. Not louder. Closer.">C'est ce travail-là que nous faisons. Pas plus fort. Plus près.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCOMPAGNEMENT — aperçu -->
+  <section class="sect on-sand">
+    <div class="wrap">
+      <div class="cols c2" style="margin-bottom:clamp(32px,5vh,60px)">
+        <div class="rv">
+          <span class="label" data-en="02 — Services">02 — Accompagnement</span>
+          <h2 class="d2 it">Two ways to move forward.</h2>
+        </div>
+      </div>
+      <div class="cols c2">
+        <a class="offer rv" href="#/accompagnement/community-management">
+          <span class="num">01</span>
+          <h3 class="d3">Community<br>Management</h3>
+          <ul>
+            <li data-en="Social media strategy">Stratégie social media</li>
+            <li data-en="Content creation">Création de contenu</li>
+            <li data-en="Storytelling">Storytelling</li>
+            <li data-en="Day-to-day channel management">Gestion quotidienne des réseaux</li>
+            <li data-en="Community growth">Développement de communauté</li>
+            <li data-en="Editorial planning">Stratégie éditoriale</li>
+          </ul>
+          <span class="link" data-en="Discover Community Management →">Découvrir Community Management →</span>
+        </a>
+        <a class="offer rv" href="#/accompagnement/brand-partnerships">
+          <span class="num">02</span>
+          <h3 class="d3">Brand<br>Partnerships</h3>
+          <ul>
+            <li data-en="Partnership strategy">Stratégie de partenariat</li>
+            <li data-en="Finding the right brands">Identification de marques pertinentes</li>
+            <li data-en="Introductions">Mise en relation</li>
+            <li data-en="Building the offer">Construction d'offres</li>
+            <li data-en="Activating collaborations">Activation des collaborations</li>
+            <li data-en="Managing the athlete / brand relationship">Suivi de la relation athlète / marque</li>
+          </ul>
+          <span class="link" data-en="Discover Brand Partnerships →">Découvrir Brand Partnerships →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOOD PACERS — aperçu -->
+  <section class="sect on-dark">
+    <div class="wrap cols c-side">
+      <div class="rv">
+        <span class="label">03 — Good Pacers</span>
+        <h2 class="d2">Join the<br><span class="it">Good Pacers.</span></h2>
+      </div>
+      <div class="rv">
+        <p class="quote" style="margin-bottom:1em">Good Pacers are athletes who move, create, share and inspire.</p>
+        <p class="muted" data-en="GOOD PACE is not a roster. It is a group of athletes who share the same idea of sport: demanding, generous, and a lot more fun together.">GOOD PACE n'est pas une écurie. C'est un groupe d'athlètes qui partagent la même idée du sport : exigeante, généreuse, et nettement plus agréable à plusieurs.</p>
+        <p style="margin-top:2em"><a class="link" href="#/communaute" data-en="Become a Good Pacer →">Devenir Good Pacer →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MON HISTOIRE — aperçu -->
+  <section class="sect wrap">
+    <div class="cols c-side">
+      <figure class="rv"><img class="ph r45" src="images/portrait.jpg" alt="Anaïs, fondatrice de GOOD PACE" loading="lazy"></figure>
+      <div class="rv">
+        <span class="label" data-en="04 — My story">04 — Mon histoire</span>
+        <h2 class="d2" data-en="Hi, I'm Anaïs.">Bonjour, moi c'est Anaïs.</h2>
+        <p style="margin-top:1.6em" data-en="Connecting people is my engine: communication, partnerships, events. And trail running, which has been in the family since I was a kid, waiting for my dad at the finish line. GOOD PACE was born right between the two.">Créer du lien avec les gens, c'est mon moteur : la communication, les partenariats, l'événementiel. Et le trail, qui est dans la famille depuis que je suis petite, à attendre mon papa à la ligne d'arrivée. GOOD PACE est né exactement entre les deux.</p>
+        <p style="margin-top:1.8em"><a class="link" href="#/histoire" data-en="Read the story →">Lire l'histoire →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT — bande finale -->
+  <section class="sect on-sand">
+    <div class="wrap" style="text-align:center">
+      <h2 class="d2 rv it" style="margin-inline:auto">Let's move.</h2>
+      <p class="lede rv muted" style="margin:1.4em auto 2.4em" data-en="For athletes, for brands, or simply to understand how we work.">Pour les athlètes, pour les marques, ou simplement pour comprendre comment nous travaillons.</p>
+      <p class="rv" style="max-width:none; display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+        <a class="btn" href="#/contact">Join Good Pace</a>
+        <a class="btn btn-line" href="#/contact">Book a free call</a>
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================
+     VUE 2 — ACCOMPAGNEMENT
+     ================================================================ -->
+<div class="view" id="v-accompagnement">
+  <header class="page-head wrap">
+    <span class="label rv" data-en="Services">Accompagnement</span>
+    <h1 class="d1 rv it">Two ways to<br>move forward.</h1>
+    <p class="lede rv muted" style="margin-top:1.8em" data-en="Two complementary ways in. Most athletes start with one and open the second when their audience is ready.">Deux portes d'entrée complémentaires. La plupart des athlètes commencent par l'une et ouvrent la seconde quand leur audience est prête.</p>
+  </header>
+
+  <hr class="rule">
+
+  <section class="sect wrap" id="community-management">
+    <div class="cols c-side-r">
+      <div class="rv">
+        <span class="label">01</span>
+        <h2 class="d2">Community<br>Management</h2>
+        <p class="lede" style="margin:1.4em 0 2em" data-en="Turning your daily life as an athlete into something people want to follow.">Transformer ton quotidien d'athlète en quelque chose que les gens ont envie de suivre.</p>
+        <p data-en="Training, travel, doubts, small victories: the material is already there. What is usually missing is a direction, a rhythm, and someone to handle it while you focus on the sport.">L'entraînement, les déplacements, les doutes, les petites victoires : la matière existe déjà. Ce qui manque, c'est une direction, un rythme, et quelqu'un pour s'en occuper pendant que tu te concentres sur le sport.</p>
+        <ul class="stack" style="margin:2.4em 0">
+          <li><span class="k">01</span><span data-en="Editorial strategy and tone of voice">Stratégie éditoriale et tone of voice</span></li>
+          <li><span class="k">02</span><span data-en="Content creation: photo, video, writing">Création de contenu : photo, vidéo, écriture</span></li>
+          <li><span class="k">03</span><span data-en="Day-to-day management of your channels">Gestion quotidienne de tes réseaux</span></li>
+          <li><span class="k">04</span><span data-en="Storytelling around races and seasons">Storytelling autour des courses et des saisons</span></li>
+          <li><span class="k">05</span><span data-en="Community growth and engagement">Développement et animation de la communauté</span></li>
+          <li><span class="k">06</span><span data-en="Bringing out who you actually are">Mise en valeur de ta personnalité</span></li>
+        </ul>
+        <a class="btn" href="#/contact" data-en="Talk about it">En parler</a>
+      </div>
+      <figure class="rv"><img class="ph r45" src="images/course.jpg" alt="Athlète en course" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="sect on-dark" id="brand-partnerships">
+    <div class="wrap cols c-side">
+      <div class="rv">
+        <span class="label">02</span>
+        <h2 class="d2">Brand<br>Partnerships</h2>
+      </div>
+      <div class="rv">
+        <p class="lede" style="margin-bottom:1.6em" data-en="A good partnership is not a logo on a jersey. It is two stories that hold together.">Un bon partenariat, ce n'est pas un logo sur un maillot. C'est deux histoires qui tiennent ensemble.</p>
+        <p class="muted" data-en="We look for brands whose world genuinely matches yours, then we build something that can last longer than a single season.">Nous cherchons des marques dont l'univers correspond réellement au tien, puis nous construisons quelque chose qui peut durer plus d'une saison.</p>
+        <ul class="stack" style="margin:2.4em 0">
+          <li><span class="k">01</span><span data-en="Partnership strategy">Stratégie de partenariat</span></li>
+          <li><span class="k">02</span><span data-en="Identifying relevant brands">Identification de marques pertinentes</span></li>
+          <li><span class="k">03</span><span data-en="Introductions and first conversations">Mise en relation et premiers échanges</span></li>
+          <li><span class="k">04</span><span data-en="Building the offer and the media kit">Construction de l'offre et du media kit</span></li>
+          <li><span class="k">05</span><span data-en="Activating the collaboration">Activation de la collaboration</span></li>
+          <li><span class="k">06</span><span data-en="Following the relationship over time">Suivi de la relation dans la durée</span></li>
+        </ul>
+        <a class="btn" href="#/contact" data-en="Talk about it">En parler</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect wrap" style="text-align:center">
+    <h2 class="d3 rv it" style="margin-inline:auto">Not sure where to start?</h2>
+    <p class="rv muted" style="margin:1.2em auto 2em; max-width:44ch" data-en="A free call is usually the fastest way to find out.">Un appel gratuit est en général le moyen le plus rapide de le savoir.</p>
+    <a class="btn rv" href="#/contact">Book a free call</a>
+  </section>
+</div>
+
+<!-- ================================================================
+     VUE 3 — COMMUNAUTÉ
+     ================================================================ -->
+<div class="view" id="v-communaute">
+  <header class="page-head wrap">
+    <span class="label rv" data-en="Community">Communauté</span>
+    <h1 class="d1 rv">Join the<br><span class="it">Good Pacers.</span></h1>
+    <p class="quote rv" style="margin-top:1.6em">Good Pacers are athletes who move, create, share and inspire.</p>
+  </header>
+
+  <section class="sect wrap">
+    <div class="cols c-side">
+      <span class="label rv" data-en="Why join">Pourquoi rejoindre</span>
+      <div class="rv">
+        <p class="lede" data-en="A network is a list of names. A community is people who actually call each other.">Un réseau, c'est une liste de noms. Une communauté, ce sont des gens qui s'appellent vraiment.</p>
+        <p style="margin-top:1.4em" data-en="Being a Good Pacer costs nothing and commits you to nothing. It simply means being part of a group of athletes who train, create and share, and who open doors for each other.">Être Good Pacer ne coûte rien et n'engage à rien. C'est simplement faire partie d'un groupe d'athlètes qui s'entraînent, créent, partagent, et s'ouvrent des portes mutuellement.</p>
+      </div>
+    </div>
+
+    <div class="why rv" style="margin-top:clamp(40px,7vh,80px)">
+      <div><h4 data-en="A real network">Un vrai réseau</h4><p data-en="Athletes from different disciplines, at different stages, who talk to each other.">Des athlètes de disciplines et de niveaux différents, qui échangent pour de vrai.</p></div>
+      <div><h4 data-en="Shared experience">Le partage d'expérience</h4><p data-en="Races, training, nutrition, injuries, sponsors: what nobody writes down anywhere.">Courses, entraînement, nutrition, blessures, sponsors : ce qui n'est écrit nulle part.</p></div>
+      <div><h4 data-en="Encounters">Des rencontres</h4><p data-en="Sessions, weekends, and one camp a year to put faces on names.">Des sorties, des week-ends, et un camp par année pour mettre des visages sur les noms.</p></div>
+      <div><h4 data-en="Visibility">De la visibilité</h4><p data-en="Being seen by the brands and projects that pass through GOOD PACE.">Être visible auprès des marques et des projets qui passent par GOOD PACE.</p></div>
+      <div><h4 data-en="Opportunities">Des opportunités</h4><p data-en="Collaborations, test products, events, content projects.">Collaborations, produits à tester, événements, projets de contenu.</p></div>
+      <div><h4 data-en="Content">Du contenu</h4><p data-en="Photos and videos from shared outings, yours to use.">Des photos et vidéos des sorties communes, utilisables librement.</p></div>
+      <div><h4 data-en="Common projects">Des projets communs</h4><p data-en="Challenges, series, collective formats built with the group.">Challenges, séries, formats collectifs construits avec le groupe.</p></div>
+      <div><h4 data-en="Momentum">Une dynamique</h4><p data-en="The simple effect of being surrounded by people who move.">L'effet très simple d'être entouré de gens qui avancent.</p></div>
+    </div>
+  </section>
+
+  <!-- LE CAMP -->
+  <section class="sect on-dark" id="camp">
+    <div class="wrap">
+      <div class="cols c-side" style="margin-bottom:clamp(32px,5vh,56px)">
+        <div class="rv">
+          <span class="label">The Good Pace Camp</span>
+          <h2 class="d2" data-en="One camp.<br>Once a year.">Un camp.<br>Une fois par année.</h2>
+        </div>
+        <div class="rv">
+          <p class="lede" data-en="Not a competition. A few days together: training, cooking, filming, talking, and coming home with something other than a result.">Pas une compétition. Quelques jours ensemble : s'entraîner, cuisiner, filmer, discuter, et rentrer avec autre chose qu'un résultat.</p>
+          <p class="muted" style="margin-top:1.2em" data-en="Open to every Good Pacer, whatever their level. The only requirement is wanting to be there.">Ouvert à tous les Good Pacers, quel que soit le niveau. La seule condition, c'est d'avoir envie d'y être.</p>
+        </div>
+      </div>
+      <figure class="rv"><img class="ph r169" src="images/groupe.jpg" alt="Groupe de traileuses en montée" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="sect wrap" style="text-align:center">
+    <h2 class="d2 rv it" style="margin-inline:auto">Become a Good Pacer.</h2>
+    <p class="rv muted" style="margin:1.4em auto 2.2em; max-width:46ch" data-en="Tell us who you are and what you do. That is enough to start.">Dis-nous qui tu es et ce que tu fais. Ça suffit pour commencer.</p>
+    <a class="btn rv" href="#/contact" data-en="Become a Good Pacer →">Devenir Good Pacer →</a>
+  </section>
+</div>
+
+<!-- ================================================================
+     VUE 4 — MON HISTOIRE
+     ================================================================ -->
+<div class="view" id="v-histoire">
+  <header class="page-head wrap">
+    <span class="label rv" data-en="My story">Mon histoire</span>
+    <h1 class="d1 rv" data-en="Behind<br><span class='it'>Good Pace.</span>">Derrière<br><span class="it">Good Pace.</span></h1>
+  </header>
+
+  <section class="sect wrap" style="padding-top:0" id="qui-suis-je">
+    <div class="cols c-side">
+      <figure class="rv"><img class="ph r45" src="images/portrait.jpg" alt="Anaïs, fondatrice de GOOD PACE" loading="lazy"></figure>
+      <div class="rv">
+        <span class="label">01 — <span data-en="Who am I?">Qui suis-je ?</span></span>
+        <h2 class="d2" data-en="Hi, I'm Anaïs.">Bonjour, moi c'est Anaïs.</h2>
+        <p style="margin-top:1.6em" data-en="Connecting people is what I do. It is probably my main engine.">Créer du lien avec les gens, ça me connaît. C'est même mon moteur principal.</p>
+        <p data-en="Communication, partnerships, events: I have always liked making people meet and helping stories grow. I spent several years running sponsorship for a watch brand, watching how a brand picks an athlete and what it really expects from a collaboration.">La communication, les partenariats, l'événementiel : j'ai toujours aimé provoquer des rencontres et faire grandir des histoires. J'ai passé plusieurs années à gérer le sponsoring d'une marque horlogère, à voir comment une marque choisit un athlète et ce qu'elle attend vraiment d'une collaboration.</p>
+        <p data-en="But behind GOOD PACE there is something far more personal.">Mais derrière GOOD PACE, il y a quelque chose de beaucoup plus personnel.</p>
+        <p data-en="Trail and running are part of my family history. I fell into it as a kid. I used to go and watch my dad at Sierre-Zinal, and wait for him at the finish line.">Le trail et la course à pied font partie de mon histoire familiale. Je suis tombée dedans quand j'étais petite. J'allais voir mon papa à Sierre-Zinal, et je l'attendais à la ligne d'arrivée.</p>
+        <p data-en="I wanted to feel that thing myself. The one you can read on a runner's face as they come through the arch.">Je voulais ressentir à mon tour cette vibration-là. Celle qu'on lit sur le visage des coureurs quand ils passent l'arche.</p>
+        <p data-en="That is how I started running. I never really stopped.">C'est comme ça que j'ai commencé à courir. Je n'ai jamais vraiment arrêté.</p>
+        <p data-en="Challenges are familiar ground. Always with a smile, and that same urge to cross the line.">Les challenges, ça me connaît. Toujours avec le sourire, et cette envie de franchir la ligne.</p>
+        <p class="quote" style="margin-top:1.4em" data-en="GOOD PACE was born right there.<br><span class='it'>Between the two.</span>">GOOD PACE est né exactement là.<br><span class="it">Entre les deux.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="band rv">
+    <img class="ph b-tall" src="images/course.jpg" alt="En course" loading="lazy">
+    <img class="ph" src="images/groupe.jpg" alt="Sortie collective en montagne" loading="lazy">
+  </div></div>
+
+  <section class="sect on-sand" id="origine" style="margin-top:var(--sect)">
+    <div class="wrap cols c-side">
+      <div class="rv">
+        <span class="label">02 — <span data-en="How GOOD PACE started">Comment GOOD PACE a été créé ?</span></span>
+        <h2 class="d2 it">It started over<br>an avocado toast.</h2>
+      </div>
+      <div class="rv">
+        <p data-en="No strategic plan, no business school pitch. A café, a Sunday morning, a long run behind us and an avocado toast in front of us.">Pas de plan stratégique, pas de pitch d'école de commerce. Un café, un dimanche matin, une longue sortie derrière nous et un avocado toast devant nous.</p>
+        <p data-en="Someone said she had no idea how to approach a brand. Someone else said she had stopped posting because she never knew what to say. Someone else had been asked for a media kit and had no idea what that meant.">Quelqu'un a dit qu'elle ne savait pas du tout comment aborder une marque. Une autre a dit qu'elle avait arrêté de publier parce qu'elle ne savait jamais quoi dire. Une troisième s'était fait demander un media kit sans savoir ce que c'était.</p>
+        <p data-en="The conversation lasted two hours. By the end, the idea had a name.">La conversation a duré deux heures. À la fin, l'idée avait un nom.</p>
+        <p class="quote" style="margin:1.6em 0" data-en="Performances, like good ideas, rarely start where you expect them to.">Les performances, comme les bonnes idées, commencent rarement là où on les attend.</p>
+        <p class="muted" data-en="GOOD PACE is still that: conversations that go somewhere, and the work that follows.">GOOD PACE, c'est toujours ça : des conversations qui mènent quelque part, et le travail qui suit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect wrap" style="text-align:center">
+    <h2 class="d3 rv it" style="margin-inline:auto" data-en="Want to be part of it?">Envie d'en faire partie ?</h2>
+    <p class="rv" style="margin-top:2em; max-width:none"><a class="btn" href="#/contact">Join Good Pace</a></p>
+  </section>
+</div>
+
+<!-- ================================================================
+     VUE 5 — PARTENAIRES
+     ================================================================ -->
+<div class="view" id="v-partenaires">
+  <header class="page-head wrap">
+    <span class="label rv" data-en="Partners">Partenaires</span>
+    <h1 class="d1 rv it">Good athletes.<br>Good stories.<br>Good partnerships.</h1>
+  </header>
+
+  <section class="sect wrap" style="padding-top:0">
+    <div class="cols c-side">
+      <span class="label rv" data-en="For brands">Pour les marques</span>
+      <div class="rv">
+        <p class="lede" data-en="The best collaborations do not start with a follower count. They start with a shared way of seeing things.">Les meilleures collaborations ne commencent pas par un nombre d'abonnés. Elles commencent par une façon commune de voir les choses.</p>
+        <p style="margin-top:1.4em" data-en="We work with a small number of athletes, which means we know them well enough to tell you honestly whether your brand belongs in their world or not.">Nous travaillons avec un petit nombre d'athlètes, ce qui nous permet de les connaître assez bien pour vous dire honnêtement si votre marque a sa place dans leur univers ou non.</p>
+      </div>
+    </div>
+
+    <div class="why rv" style="margin-top:clamp(40px,7vh,80px)">
+      <div><h4 data-en="Ambassadors">Ambassadeurs</h4><p data-en="Long-term relationships rather than one-off posts.">Des relations durables plutôt que des publications isolées.</p></div>
+      <div><h4 data-en="Campaigns">Campagnes</h4><p data-en="Concept, shooting, distribution, follow-up.">Concept, shooting, diffusion, suivi.</p></div>
+      <div><h4 data-en="Content">Contenu</h4><p data-en="Photo and video made on the ground, not in a studio.">Photo et vidéo produites sur le terrain, pas en studio.</p></div>
+      <div><h4 data-en="Events">Événements</h4><p data-en="Presence at races, camps and brand moments.">Présence sur les courses, les camps et vos rendez-vous de marque.</p></div>
+    </div>
+  </section>
+
+  <section class="sect wrap" style="padding-top:0">
+    <div class="soon rv">
+      <span class="label" style="margin-bottom:1em" data-en="Coming soon">Bientôt</span>
+      <h2 class="d3 it" style="margin-inline:auto">The first partnerships are being built.</h2>
+      <p class="muted" style="margin:1.2em auto 2em; max-width:48ch" data-en="This page will host logos, campaigns, athletes involved and the projects we have delivered. It is deliberately empty for now: we would rather show real work than fill the space.">Cette page accueillera les logos, les campagnes, les athlètes concernés et les projets réalisés. Elle est volontairement vide pour l'instant : nous préférons montrer du vrai travail plutôt que remplir l'espace.</p>
+      <a class="btn" href="#/contact" data-en="Become a GOOD PACE partner →">Devenir partenaire GOOD PACE →</a>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================
+     VUE 6 — CONTACT
+     ================================================================ -->
+<div class="view" id="v-contact">
+  <header class="page-head wrap">
+    <span class="label rv">Contact</span>
+    <h1 class="d1 rv it">Let's move.</h1>
+    <p class="lede rv muted" style="margin-top:1.6em" data-en="For athletes, for brands, or for anyone who wants to understand what GOOD PACE is about.">Pour les athlètes, les marques, ou toute personne souhaitant comprendre l'univers GOOD PACE.</p>
+  </header>
+
+  <section class="sect wrap" style="padding-top:0">
+    <div class="cols c-side">
+      <div class="rv">
+        <span class="label">Email</span>
+        <!-- Adresse à modifier ici, dans le pied de page et dans le script en bas -->
+        <p><a class="d4" style="text-decoration:none; border-bottom:1px solid var(--ink-14)" href="mailto:hello@goodpace.ch">hello@goodpace.ch</a></p>
+        <p style="margin-top:2.4em; display:flex; gap:12px; flex-wrap:wrap; max-width:none">
+          <a class="btn" href="mailto:hello@goodpace.ch?subject=Join%20GOOD%20PACE">Join Good Pace</a>
+          <!-- Remplacer par le lien Calendly le moment venu -->
+          <a class="btn btn-line" href="mailto:hello@goodpace.ch?subject=Free%20call">Book a free call</a>
+        </p>
+        <p class="small muted" style="margin-top:2.4em" data-en="Switzerland">Suisse</p>
+        <p class="small" style="display:flex; gap:16px"><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></p>
+      </div>
+
+      <form class="form rv" id="contact-form">
+        <div class="f2">
+          <div class="field"><label for="f-first" data-en="First name">Prénom</label><input id="f-first" name="first" autocomplete="given-name" required></div>
+          <div class="field"><label for="f-last" data-en="Last name">Nom</label><input id="f-last" name="last" autocomplete="family-name" required></div>
+        </div>
+        <div class="field"><label for="f-mail">Email</label><input id="f-mail" name="mail" type="email" autocomplete="email" required></div>
+        <div class="field">
+          <label for="f-who" data-en="I am">Je suis</label>
+          <select id="f-who" name="who">
+            <option data-en="Athlete">Athlète</option>
+            <option data-en="Brand">Marque</option>
+            <option data-en="Other">Autre</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="msg" required></textarea></div>
+        <div><button class="btn" type="submit" data-en="Send">Envoyer</button></div>
+        <p class="form-note" data-en="The form opens your email app with the message ready to send.">Le formulaire ouvre ton application mail avec le message prêt à partir.</p>
+      </form>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ================= PIED DE PAGE ================= -->
+<footer class="ftr">
+  <div class="ftr-in">
+    <div class="ftr-top">
+      <div>
+        <img class="lg" src="assets/logo-cream.png" alt="GOOD PACE Athlete Management" loading="lazy">
+        <p class="muted small" style="margin:0" data-en="Switzerland">Suisse</p>
+      </div>
+      <ul>
+        <li><a href="#/accueil" data-en="Home">Accueil</a></li>
+        <li><a href="#/accompagnement" data-en="Services">Accompagnement</a></li>
+        <li><a href="#/communaute" data-en="Community">Communauté</a></li>
+        <li><a href="#/histoire" data-en="My story">Mon histoire</a></li>
+        <li><a href="#/partenaires" data-en="Partners">Partenaires</a></li>
+        <li><a href="#/contact">Contact</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:hello@goodpace.ch">hello@goodpace.ch</a></li>
+      </ul>
+    </div>
+    <div class="ftr-bottom">
+      <span>&copy; GOOD PACE <span id="year">2026</span></span>
+      <span>Athlete Management</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var EMAIL = 'hello@goodpace.ch';   /* adresse de réception du formulaire */
+
+  /* ---------- photos absentes : un cadre sable propre plutôt qu'une image cassée ---------- */
+  document.querySelectorAll('img.ph').forEach(function(img){
+    function swap(){
+      var d = document.createElement('div');
+      d.className = img.className + ' ph-missing';
+      d.textContent = img.getAttribute('src');
+      img.replaceWith(d);
+    }
+    if(img.complete && img.naturalWidth === 0) swap(); else img.addEventListener('error', swap);
+  });
+
+  /* ---------- bilingue : le FR est dans le HTML, l'EN dans data-en ---------- */
+  var i18n = document.querySelectorAll('[data-en]');
+  i18n.forEach(function(el){ el.dataset.fr = el.innerHTML; });
+  var lang = 'fr';
+  function setLang(l){
+    lang = l;
+    document.documentElement.lang = l;
+    i18n.forEach(function(el){ el.innerHTML = (l === 'en' ? el.dataset.en : el.dataset.fr); });
+    var fr = document.getElementById('btn-fr'), en = document.getElementById('btn-en');
+    fr.classList.toggle('on', l === 'fr'); en.classList.toggle('on', l === 'en');
+    fr.setAttribute('aria-pressed', l === 'fr'); en.setAttribute('aria-pressed', l === 'en');
+    try{ localStorage.setItem('gp-lang', l); }catch(e){}
+  }
+  document.getElementById('btn-fr').addEventListener('click', function(){ setLang('fr'); });
+  document.getElementById('btn-en').addEventListener('click', function(){ setLang('en'); });
+  try{ if(localStorage.getItem('gp-lang') === 'en') setLang('en'); }catch(e){}
+
+  /* ---------- apparitions au scroll ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  /* ---------- navigation par vues ---------- */
+  var views = document.querySelectorAll('.view');
+  var nav = document.getElementById('nav');
+  var current = 'accueil';
+
+  function show(name, anchor){
+    var target = document.getElementById('v-' + name);
+    if(!target){ name = 'accueil'; target = document.getElementById('v-accueil'); }
+    current = name;
+    views.forEach(function(v){ v.classList.toggle('on', v === target); });
+    document.querySelectorAll('[data-nav]').forEach(function(a){ a.classList.toggle('active', a.dataset.nav === name); });
+    if(anchor){
+      var el = document.getElementById(anchor);
+      if(el){ requestAnimationFrame(function(){ window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 70); onScroll(); }); return; }
+    }
+    window.scrollTo(0,0);
+    onScroll();
+  }
+  function route(){
+    var h = location.hash.replace(/^#\/?/, '');
+    if(!h){ show('accueil'); return; }
+    var parts = h.split('/');
+    show(parts[0], parts[1]);
+  }
+  window.addEventListener('hashchange', route);
+
+  /* ancres internes à la page d'accueil (ex. #intro) */
+  document.querySelectorAll('a[href^="#"]:not([href^="#/"])').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if(el){ e.preventDefault(); window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 60, behavior:'smooth'}); }
+    });
+  });
+
+  /* les boutons des menus déroulants ouvrent aussi la page */
+  document.querySelectorAll('.nav-trigger').forEach(function(b){
+    b.addEventListener('click', function(){ location.hash = '#/' + b.dataset.nav; });
+  });
+
+  /* ---------- barre transparente sur la bannière ---------- */
+  function onScroll(){
+    nav.classList.toggle('over-hero', current === 'accueil' && window.scrollY < window.innerHeight - 90);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+
+  /* ---------- menu mobile ---------- */
+  var sheet = document.getElementById('sheet'), burger = document.getElementById('burger');
+  function setSheet(o){
+    sheet.classList.toggle('open', o);
+    burger.setAttribute('aria-expanded', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){ setSheet(true); });
+  document.getElementById('sheet-close').addEventListener('click', function(){ setSheet(false); });
+  sheet.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setSheet(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setSheet(false); });
+
+  /* ---------- formulaire : ouvre le client mail ---------- */
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var f = e.target;
+    var body = [
+      (lang === 'en' ? 'Name: ' : 'Nom : ') + f.first.value + ' ' + f.last.value,
+      'Email: ' + f.mail.value,
+      (lang === 'en' ? 'I am: ' : 'Je suis : ') + f.who.value,
+      '',
+      f.msg.value
+    ].join('\n');
+    location.href = 'mailto:' + EMAIL
+      + '?subject=' + encodeURIComponent('GOOD PACE — ' + f.who.value + ' — ' + f.first.value + ' ' + f.last.value)
+      + '&body=' + encodeURIComponent(body);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  route();
+})();
+</script>
+</body>
+</html>
